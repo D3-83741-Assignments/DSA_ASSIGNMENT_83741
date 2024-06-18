@@ -1,0 +1,13 @@
+
+ #git status -u --short| grep ^["?","??"]| cut -d " " -f 2
+words=($(git status -u --short| grep ^["??"," M"]|cut -d " " -f 2)) 
+# awk -F'.' '{print $NF}'))
+
+for word in "${words[@]}"
+do
+git add "./${word}"
+name=$(echo "$word" | cut -d "." -f 1)
+git commit -m "${name}"
+
+
+done
